@@ -1,8 +1,8 @@
-# Skrypt generuje automat komórkowy i drukuje go linia po linii (z użyciem py-thermal-library) na drukarce termicznej
-
 require 'rubygems'
 require 'rmagick'
 require 'rubyserial'
+require 'opencv'
+include OpenCV
 
 class Printer
     @@SerialPort = '/dev/ttyAMA0'
@@ -51,11 +51,23 @@ class ElemCellAutomat
     end
   end
 end
-master_printer = Printer.new
-eca = ElemCellAutomat.new('1'.center(384, '0'),75 , true) #30, 57, 45, 75
-#while true
+
+eca = ElemCellAutomat.new('1'.center(10, '0'),75 , true) #30, 57, 45, 75
+
 @master_array = []
-eca.take(1000).each_with_index do |eca_line, eca_index|
+eca.take(400).each_with_index do |eca_line, eca_index|
+  face_checker = true
+  while face_checker do
+      data_face = 'file2.xml'
+      detector = CvHaarClassifierCascade::load(data_face)
+      capture = OpenCV::CvCapture.open
+      capture.query.save('image.jpg')
+      image = CvMat.load('image.jpg')
+      n=0
+      detector.detect_objects(image).each do |region|
+          face_checker = false
+      end
+  end
   @master_array << []
 
   data = eca_line.split('')
@@ -66,7 +78,6 @@ eca.take(1000).each_with_index do |eca_line, eca_index|
       @master_array[eca_index] << 1
     end
   end
-  #start - testowy kod xD
   print_bytes = []
   counter = 0
   chunkHeight = 1
@@ -84,11 +95,8 @@ eca.take(1000).each_with_index do |eca_line, eca_index|
   end
   print_bytes.each do |b|
       master_printer.write(b.chr)
-  end
-  # koniec - testowy kod xD
+  # end
+  # print data.join()
+  # puts ''
 end
-
-
-#img.cur_image.quantize(2,Magick::GRAYColorspace, false).write('demo.bmp')
-#system('python obrazek2.py')
 
