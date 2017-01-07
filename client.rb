@@ -1,8 +1,8 @@
-# Skrypt generuje automat komórkowy i drukuje go linia po linii (z użyciem py-thermal-library) na drukarce termicznej
-
+require 'socket'
 require 'rubygems'
 require 'rmagick'
 require 'rubyserial'
+require 'thread'
 
 class Printer
     @@SerialPort = '/dev/ttyAMA0'
@@ -51,44 +51,45 @@ class ElemCellAutomat
     end
   end
 end
-master_printer = Printer.new
-eca = ElemCellAutomat.new('1'.center(384, '0'),75 , true) #30, 57, 45, 75
-#while true
-@master_array = []
-eca.take(1000).each_with_index do |eca_line, eca_index|
-  @master_array << []
 
-  data = eca_line.split('')
-  data.each do |item|
-    if item == "0"
-      @master_array[eca_index] << 0
-    elsif item == "1"
-      @master_array[eca_index] << 1
+master_printer = Printer.new()
+
+host = '192.168.0.100'
+port = 4567
+@server = TCPSocket.open host, port
+@face_checker = @server.gets
+
+eca = ElemCellAutomat.new('1'.center(384, '0'),75 , true) #30, 57, 45, 75
+
+Thread.new  do
+    while true
+        $face_checker = @server.gets.chomp
     end
-  end
-  #start - testowy kod xD
-  print_bytes = []
-  counter = 0
-  chunkHeight = 1
-  print_bytes = [18, 42, 1, 48]
-  48.times do |i|
-      byt = 0
-      8.times do |n|
-          pixel_value = @master_array[eca_index][counter]
-          counter += 1
-          if pixel_value == 0
-              byt += 1<<(7-n)
-          end
-      end
-      print_bytes << byt
-  end
-  print_bytes.each do |b|
-      master_printer.write(b.chr)
-  end
-  # koniec - testowy kod xD
 end
 
+eca.each_with_index do |eca_line, eca_index|
+    if $face_checker == "false" 
+        while $face_checker != "true" do
+        end
+    end
 
-#img.cur_image.quantize(2,Magick::GRAYColorspace, false).write('demo.bmp')
-#system('python obrazek2.py')
-
+    data = eca_line.split('')
+    data.each_with_index do |item, index|
+      data[index] = item.to_i
+    end
+    print_bytes = []
+    chunkHeight = 1
+    print_bytes = [18, 42, 1, 48]
+    48.times do |i|
+        byt = 0
+        8.times do |n|
+            if data[i] == 0
+                byt += 1<<(7-n)
+            end
+        end
+        print_bytes << byt
+    end
+    print_bytes.each do |b|
+        master_printer.write(b.chr)
+    end
+end
