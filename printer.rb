@@ -27,8 +27,8 @@ class Printer
     def write (args)
       @printer.write(args)
     end
+
 end
 
 printer = Printer.new
-printer.write('test')
-4.times {printer.write(10.chr)}
+printer.write('Hello World')
