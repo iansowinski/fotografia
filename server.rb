@@ -4,7 +4,7 @@ require 'opencv'
 include OpenCV
 
 $face_checker = false
-server_ip = `ipconfig getifaddr en0` # change this if you're not on mac os
+server_ip = Socket.ip_address_list[3].ip_address
 puts "server ip is #{server_ip}"
 
 Thread.new do
