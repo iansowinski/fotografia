@@ -4,9 +4,11 @@ require 'opencv'
 include OpenCV
 
 $face_checker = false
+server_ip = `ipconfig getifaddr en0` # change this if you're not on mac os
+puts "server ip is #{server_ip}"
 
 Thread.new do
-    tcp_server = TCPServer.new('192.168.1.3', 4567)
+    tcp_server = TCPServer.new(server_ip, 4567)
     srv = tcp_server.accept
     while true 
         srv.puts "#{$face_checker}"
