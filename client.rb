@@ -71,7 +71,7 @@ Thread.new  do
     end
 end
 
-eca.each_with_index do |eca_line, eca_index|
+eca.take(1000).each_with_index do |eca_line, eca_index|
     if $face_checker == "false" 
         while $face_checker != "true" do
         end
@@ -79,15 +79,15 @@ eca.each_with_index do |eca_line, eca_index|
 
     data = eca_line.split('')
     data.each_with_index do |item, index|
-      data[index] = item
+      data[index] = item.to_i
     end
-    print_bytes = []
-    chunkHeight = 1
+    counter = 0
     print_bytes = [18, 42, 1, 48]
     48.times do |i|
         byt = 0
         8.times do |n|
-            if data[i] == '0'
+          pixel_value = data[counter]
+            if pixel_value == 0
                 byt += 1<<(7-n)
             end
         end
