@@ -55,7 +55,7 @@ end
 master_printer = Printer.new()
 
 host = ARGV[0]
-port = ARGV[1]
+port = ARGV[1].to_i
 
 @server = TCPSocket.open host, port
 @face_checker = @server.gets
