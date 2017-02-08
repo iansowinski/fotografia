@@ -71,10 +71,9 @@ Thread.new  do
     end
 end
 
-eca.take[1000].each_with_index do |eca_line, eca_index|
+eca.take(1000).each_with_index do |eca_line, eca_index|
     if $face_checker == "false" 
-        while $face_checker != "true" do
-        end
+        while $face_checker != "true" {}
     end
     master_array = []
     data = eca_line.split('')
@@ -95,7 +94,7 @@ eca.take[1000].each_with_index do |eca_line, eca_index|
         8.times do |n|
             pixel_value = master_array[counter]
             counter += 1
-            if data[i] == 0
+            if pixel_value == 0
                 byt += 1<<(7-n)
             end
         end
