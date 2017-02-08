@@ -81,15 +81,18 @@ eca.take(1000).each_with_index do |eca_line, eca_index|
     data.each_with_index do |item, index|
       data[index] = item.to_i
     end
+
     counter = 0
+    chunkHeight = 1
     print_bytes = [18, 42, 1, 48]
     48.times do |i|
         byt = 0
         8.times do |n|
           pixel_value = data[counter]
-            if pixel_value == 0
-                byt += 1<<(7-n)
-            end
+          counter += 1
+          if pixel_value == 0
+              byt += 1<<(7-n)
+          end
         end
         print_bytes << byt
     end
