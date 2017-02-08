@@ -71,7 +71,7 @@ Thread.new  do
     end
 end
 
-eca.each_with_index do |eca_line, eca_index|
+eca.take[1000].each_with_index do |eca_line, eca_index|
     if $face_checker == "false" 
         while $face_checker != "true" do
         end
