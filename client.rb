@@ -54,8 +54,11 @@ end
 
 master_printer = Printer.new()
 
-host = ARGV[0]
-port = ARGV[1].to_i
+#host = ARGV[0]
+#port = ARGV[1].to_i
+
+host = '192.168.0.100'
+port = 4567
 
 @server = TCPSocket.open host, port
 @face_checker = @server.gets
@@ -91,6 +94,6 @@ eca.each_with_index do |eca_line, eca_index|
         print_bytes << byt
     end
     print_bytes.each do |b|
-        master_printer.write(b.chr)
+      master_printer.write(b)
     end
 end
