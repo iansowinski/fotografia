@@ -52,7 +52,7 @@ class ElemCellAutomat
   end
 end
 
-master_printer = Printer.new()
+master_printer = Printer.new
 
 #host = ARGV[0]
 #port = ARGV[1].to_i
@@ -73,7 +73,8 @@ end
 
 eca.take(1000).each_with_index do |eca_line, eca_index|
     if $face_checker == "false" 
-        while $face_checker != "true" {}
+        while $face_checker != "true" do
+        end
     end
     master_array = []
     data = eca_line.split('')
@@ -84,8 +85,9 @@ eca.take(1000).each_with_index do |eca_line, eca_index|
         master_array << 1
       end
     end
+    puts "master array:"
+    print master_array
 
-    print_bytes = []
     counter = 0
     chunkHeight = 1
     print_bytes = [18, 42, 1, 48]
@@ -100,6 +102,8 @@ eca.take(1000).each_with_index do |eca_line, eca_index|
         end
         print_bytes << byt
     end
+    puts "print_bytes:"
+    print print_bytes
     print_bytes.each do |b|
       master_printer.write(b.chr)
     end
