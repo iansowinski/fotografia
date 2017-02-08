@@ -6,7 +6,7 @@ include OpenCV
 $face_checker = false
 server_ip = Socket.ip_address_list[3].ip_address
 puts "server ip is #{server_ip}"
-
+puts "port is 4567"
 Thread.new do
     tcp_server = TCPServer.new(server_ip, 4567)
     srv = tcp_server.accept

@@ -79,7 +79,7 @@ eca.each_with_index do |eca_line, eca_index|
 
     data = eca_line.split('')
     data.each_with_index do |item, index|
-      data[index] = item.to_i
+      data[index] = item
     end
     print_bytes = []
     chunkHeight = 1
@@ -87,13 +87,13 @@ eca.each_with_index do |eca_line, eca_index|
     48.times do |i|
         byt = 0
         8.times do |n|
-            if data[i] == 0
+            if data[i] == '0'
                 byt += 1<<(7-n)
             end
         end
         print_bytes << byt
     end
     print_bytes.each do |b|
-      master_printer.write(b)
+      master_printer.write(b.chr)
     end
 end
