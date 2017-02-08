@@ -18,13 +18,15 @@ end
 data = 'model.xml'
 detector = CvHaarClassifierCascade::load(data)
 color = CvColor::Yellow
+video_size =  OpenCV::CvSize.new(200,150)
 capture = OpenCV::CvCapture.open
+capture.size=video_size
 window = GUI::Window.new('Face detection')
 while true do
   $face_checker = false
   image = capture.query
   detector.detect_objects(image).each do |region|
-    $face_checker = true   
+    $face_checker = true
     image.rectangle! region.top_left, region.bottom_right, :color => color, :thickness => 3
   end
   window.show(image)
