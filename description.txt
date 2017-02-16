@@ -1,0 +1,15 @@
+The Game of Life
+
+A cellular automaton is a system consisting of cells placed next to each other, and a set of rules describing their evolution. Their layout resembles a checkerboard or a piece of squared paper. Each cell can adopt one of two states - it can be dead or alive (1 or 0). The cell’s state is updated in each time step, according to the rules, which describe how the cell’s state is dependant on its current state and the state of its neighbours.
+
+In the attached table, you can see some sample rulesets. As you can see, each of the rules has 8 different arrangements. This is due to the number of possible settings of three cells with two possible states (2 to the power of 3). In the first row from the top, you can see the initial setting of three cells, and in the next one - the state of the middle cell in the next time step.
+
+In the second image, you can see the effect of different rulesets. Every row represents on timestep. Some rulesets evolve into random systems (i.e. ruleset 30), others form more schematic, fractal-like structures (i.e. 161). The outcome heavily depends on the initial state - even the change of a single cell can have a drastic impact on the evolution of the whole system. 
+
+Cellular automata, whose structures are described by a grid of cells, their states, and the rules governing their transitions, are mathematical models. John von Neumann - a prominent mathematician, the creator of the game theory  and the concept of self-replicating machines - is considered the creator of cellular automata.
+
+Despite a certain dose of abstraction that characterizes mathematics, it turns out that cellular automata are common in nature. One of the more interesting examples are patterns on the shells of some sea snails.
+
+This mechanism is also used by plants, which regulate the absorption and loss of gasses this way (each stoma on the leaf behaves like a cellular automaton). Automata are also used in researching neurons (during learning) and in cryptography (due to the randomness of some rulesets).
+
+Although cellular automata were created in the forties, they were more precisely described and classified only in the eighties, by Stephen Wolfram, who wrote more about them in his controversial “A New Kind of Science”. In this publication, he expresses the need to study simple systems, that might help us understand the complex laws of nature on an elementary level.
