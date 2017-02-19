@@ -56,11 +56,10 @@ end
 master_printer = Printer.new()
 
 
-
 @face_checker = @server.gets
 
 eca = ElemCellAutomat.new('1'.center(384, '0'),75 , true) #30, 57, 45, 75
-
+start = Time.now.to_i
 eca.each_with_index do |eca_line, eca_index|
     sleep 0.1
     data = eca_line.split('')
@@ -85,7 +84,7 @@ eca.each_with_index do |eca_line, eca_index|
     print_bytes.each do |b|
       master_printer.write(b.chr)
     end
-    if Time.now.to_i > 1487160000
+    if Time.now.to_i > start + 60
       break
     end
 end
