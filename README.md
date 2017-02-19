@@ -38,3 +38,8 @@ Thermal printer will print continuously one-dimentional (or two-dimentional if y
 There are several philosophical references here - from the idea of deism through observer effect up to AI self-awareness problem.
 
 Work will be exhibited at [Rotunda gallery](http://uap.edu.pl/ctg/wystawy/) (Poznań, Poland) 21-22.02.2017.
+
+**Notes to myself**
+
+[Link to drivers](http://www.logitech.com/pub/video/quickcam/lws220.dmg)
+
