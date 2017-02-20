@@ -19,7 +19,7 @@ data = 'model.xml'
 detector = CvHaarClassifierCascade::load(data)
 color = CvColor::Yellow
 video_size =  OpenCV::CvSize.new(600, 400)
-capture = OpenCV::CvCapture.open(1)
+capture = OpenCV::CvCapture.open
 capture.size=video_size
 window = GUI::Window.new('Face detection')
 while true do
