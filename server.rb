@@ -4,7 +4,7 @@ require 'opencv'
 include OpenCV
 
 $face_checker = false
-server_ip = Socket.ip_address_list[3].ip_address
+server_ip = Socket.ip_address_list[4].ip_address
 puts "server ip is #{server_ip}"
 puts "port is 4567"
 Thread.new do
