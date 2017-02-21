@@ -1,4 +1,4 @@
-The Game of Life
+The Game of Life*
 
 A cellular automaton is a system consisting of cells placed next to each other, and a set of rules describing their evolution. Their layout resembles a checkerboard or a sheet of squared paper. Each cell can adopt one of two states - it can be dead or alive (1 or 0). The cell’s state is updated in each time step, according to the rules, which describe how the cell’s state is dependant on its current state and the state of its neighbours.
 
@@ -13,3 +13,5 @@ Despite a certain dose of abstraction that characterizes mathematics, it turns o
 This mechanism is also used by plants, which regulate the absorption and loss of gasses this way (each stoma on the leaf behaves like a cell). Automata are also used in researching neurons (during learning) and in cryptography (due to the randomness of some rulesets).
 
 Although cellular automata were created in the forties, they were more precisely described and classified only in the eighties, by Stephen Wolfram, who wrote more about them in his controversial “A New Kind of Science”. In this publication, he expresses the need to study simple systems, that might help us understand the complex laws of nature on an elementary level.
+
+*Game of life - most famous cellular automata, created in 1970 by british mathematician John Conway.
